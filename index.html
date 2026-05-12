@@ -1,120 +1,26 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portail de Gestion</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Mon Cloud Gaming SNES</title>
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background: radial-gradient(circle at center, #1e293b 0%, #020617 100%);
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .glass-card:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: #38bdf8;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
+        /* Un peu de style style "Dark Mode" comme Xbox */
+        body { background: #121212; color: white; font-family: sans-serif; text-align: center; }
+        .game-container { width: 800px; height: 600px; margin: auto; border: 5px solid #107C10; } /* Vert Xbox */
     </style>
 </head>
-<body class="text-slate-300 min-h-screen flex flex-col items-center justify-center p-4">
-
-    <!-- Logo ou Titre Principal -->
-    <div class="mb-12 text-center">
-        <h1 class="text-xs uppercase tracking-[0.5em] text-sky-500 font-bold mb-2">Interface Centrale</h1>
-        <p class="text-3xl font-light text-white italic"><span class="font-semibold"></span></p>
+<body>
+    <h1>SNES Cloud Hub</h1>
+    <div class="game-container">
+        <!-- L'émulateur s'affichera ici -->
+        <div id="game"></div>
     </div>
 
-    <div class="grid md:grid-cols-2 gap-6 w-full max-w-3xl">
-        
-        <!-- TRADEO : Gestion des Bacs -->
-        <a href="./tradeo" class="glass-card group p-8 rounded-3xl relative overflow-hidden">
-            <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-                    <path d="M21 8H3V21H21V8Z"/><path d="M3 8L5 3H19L21 8"/><path d="M12 12V17"/>
-                </svg>
-            </div>
-            
-            <div class="relative z-10">
-                <div class="w-12 h-12 bg-sky-500/20 rounded-xl flex items-center justify-center text-sky-400 mb-6 group-hover:bg-sky-500 group-hover:text-white transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                    </svg>
-                </div>
-                <h2 class="text-2xl font-semibold text-white mb-2">TRADEO</h2>
-                <p class="text-sm text-slate-400 leading-relaxed">
-                
-                </p>
-            </div>
-        </a>
-
-        <!-- RDNM : Autre Service -->
-        <a href="./rdnm" class="glass-card group p-8 rounded-3xl relative overflow-hidden">
-            <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-                    <path d="M12 2L2 7L12 12L22 7L12 2Z"/><path d="M2 17L12 22L22 17"/><path d="M2 12L12 17L22 12"/>
-                </svg>
-            </div>
-
-            <div class="relative z-10">
-                <div class="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center text-emerald-400 mb-6 group-hover:bg-emerald-500 group-hover:text-white transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                    </svg>
-                </div>
-                <h2 class="text-2xl font-semibold text-white mb-2">RDNM</h2>
-                <p class="text-sm text-slate-400 leading-relaxed">
-                
-                </p>
-            </div>
-        </a>
-
-        
-       <br> 
-        
- <a href="./gestion/admin.php" class="glass-card group p-8 rounded-3xl relative overflow-hidden md:col-span-2">
-            <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                </svg>
-            </div>
-
-            <div class="relative z-10 flex flex-col items-center md:flex-row md:gap-8">
-                <div class="w-12 h-12 bg-amber-500/20 rounded-xl flex items-center justify-center text-amber-400 mb-6 md:mb-0 group-hover:bg-amber-500 group-hover:text-white transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                </div>
-                <div class="text-center md:text-left">
-                    <h2 class="text-2xl font-semibold text-white mb-2">ADMINISTRATION</h2>
-                    <p class="text-sm text-slate-400 leading-relaxed">
-                    
-                    </p>
-                </div>
-            </div>
-        </a>       
-        
-        
-        
-        
-        
-        
-        
-        
-    </div>
-
-    <!-- Pied de page -->
-    <div class="mt-12 text-slate-600 text-[10px] tracking-widest uppercase">
-        El Blanco & Tribilin75 — 2026
-    </div>
-
+    <script>
+        // C'est ici qu'on demande à l'émulateur de charger ton jeu (ROM)
+        EJS_player = '#game';
+        EJS_core = 'snes'; 
+        EJS_gameUrl = 'URL_DE_TON_JEU.sfc'; // Lien vers ton fichier de jeu
+    </script>
+    <script src="https://www.emulatorjs.com/loader.js"></script>
 </body>
 </html>
