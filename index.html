@@ -1,26 +1,137 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-    <title>Mon Cloud Gaming SNES</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Cloud Gaming Multi-Consoles</title>
     <style>
-        /* Un peu de style style "Dark Mode" comme Xbox */
-        body { background: #121212; color: white; font-family: sans-serif; text-align: center; }
-        .game-container { width: 800px; height: 600px; margin: auto; border: 5px solid #107C10; } /* Vert Xbox */
+        /* Design style "Dark Mode / Xbox" */
+        body { 
+            background: #121212; 
+            color: white; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; padding: 20px; 
+            text-align: center; 
+        }
+
+        h1 { color: #107C10; margin-bottom: 30px; }
+        h2 { border-bottom: 2px solid #333; padding-bottom: 10px; margin-top: 30px; }
+
+        .container { max-width: 900px; margin: auto; }
+
+        /* Grille des jeux */
+        .game-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); 
+            gap: 20px; 
+            margin-bottom: 40px; 
+        }
+
+        .game-card { 
+            background: #1e1e1e; 
+            padding: 10px; 
+            border-radius: 10px; 
+            cursor: pointer; 
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .game-card:hover { 
+            transform: scale(1.05); 
+            border-color: #107C10; 
+            background: #252525;
+        }
+
+        .game-card img { 
+            width: 100%; 
+            border-radius: 5px; 
+            margin-bottom: 10px; 
+        }
+
+        /* Lecteur de jeu */
+        #game-display { 
+            width: 100%; 
+            max-width: 800px; 
+            height: 600px; 
+            margin: 20px auto; 
+            background: #000; 
+            border: 4px solid #107C10; 
+            border-radius: 10px;
+            position: relative;
+        }
+
+        #emulator-container { width: 100%; height: 100%; }
+
+        .info { font-size: 0.9em; color: #888; margin-top: 10px; }
     </style>
 </head>
 <body>
-    <h1>SNES Cloud Hub</h1>
-    <div class="game-container">
-        <!-- L'émulateur s'affichera ici -->
-        <div id="game"></div>
+
+<div class="container">
+    <h1>🎮 RETRO CLOUD HUB</h1>
+
+    <!-- SECTION NINTENDO -->
+    <h2>Super Nintendo</h2>
+    <div class="game-grid">
+        <div class="game-card" onclick="lancer('roms/mario.sfc', 'snes')">
+            <p>Super Mario World</p>
+        </div>
+        <div class="game-card" onclick="lancer('roms/zelda.sfc', 'snes')">
+            <p>Zelda: ALTTP</p>
+        </div>
     </div>
 
-    <script>
-        // C'est ici qu'on demande à l'émulateur de charger ton jeu (ROM)
-        EJS_player = '#game';
-        EJS_core = 'snes'; 
-        EJS_gameUrl = 'https://tradeoese.github.io/Super_Bomberman.sfc'; // Lien vers ton fichier de jeu
-    </script>
-    <script src="https://www.emulatorjs.com/loader.js"></script>
+    <!-- SECTION SEGA -->
+    <h2>Mega Drive</h2>
+    <div class="game-grid">
+        <div class="game-card" onclick="lancer('roms/sonic.gen', 'segaMD')">
+            <p>Sonic The Hedgehog</p>
+        </div>
+    </div>
+
+    <!-- SECTION PLAYSTATION -->
+    <h2>PlayStation 1</h2>
+    <div class="game-grid">
+        <div class="game-card" onclick="lancer('roms/crash.chd', 'pcsx_rearmed')">
+            <p>Crash Bandicoot</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ZONE DU LECTEUR -->
+    <div id="game-display">
+        <div id="emulator-container"></div>
+    </div>
+
+    <p class="info">Astuce : Connectez une manette USB/Bluetooth pour jouer !</p>
+</div>
+
+<!-- SCRIPT DU MOTEUR -->
+<script>
+    function lancer(fichierUrl, typeConsole) {
+        // 1. Nettoyer le lecteur précédent
+        document.getElementById('emulator-container').innerHTML = '';
+
+        // 2. Paramètres de base
+        EJS_player = '#emulator-container';
+        EJS_core = typeConsole;
+        EJS_gameUrl = fichierUrl; 
+
+        // 3. Gestion spécifique du BIOS (PSX)
+        if (typeConsole === 'pcsx_rearmed') {
+            EJS_biosUrl = 'roms/scph5501.bin'; 
+        }
+
+        // 4. Charger l'émulateur dynamiquement
+        let loader = document.createElement('script');
+        loader.src = "https://www.emulatorjs.com/loader.js";
+        document.body.appendChild(loader);
+        
+        // Scroll automatique vers le jeu
+        document.getElementById('game-display').scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+
 </body>
 </html>
