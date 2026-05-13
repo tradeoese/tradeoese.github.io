@@ -29,13 +29,24 @@
 
 .game-card img { 
     width: 100%; 
-    aspect-ratio: 16 / 9; /* Force le format rectangulaire horizontal */
-    object-fit: cover;    /* Remplit le cadre sans déformer l'image */
+    aspect-ratio: 16 / 9; 
+    
+    /* C'est ce qui manque dans ton code actuel : */
+    object-fit: cover;    /* Pour zoomer légèrement au lieu d'écraser */
+    object-position: top; /* Garde le titre du jeu visible si l'image est coupée */
+    
     border-radius: 8px;
-    margin-bottom: 12px;
-    background: #252525;  /* Couleur de fond en attendant le chargement */
     display: block;
-}
+}        
+//.game-card img { 
+//    width: 100%; 
+//    aspect-ratio: 16 / 9; /* Force le format rectangulaire horizontal */
+//    object-fit: cover;    /* Remplit le cadre sans déformer l'image */
+ //   border-radius: 8px;
+//    margin-bottom: 12px;
+//    background: #252525;  /* Couleur de fond en attendant le chargement */
+//    display: block;
+//}
 
 .game-card {
     background: #1e1e1e;
