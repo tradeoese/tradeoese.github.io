@@ -27,40 +27,25 @@
             margin-bottom: 40px; 
         }
 
-.game-card img { 
-    width: 100%; 
-    aspect-ratio: 16 / 9; 
-    
-    /* L'image garde ses proportions et s'affiche entièrement */
-    object-fit: contain; 
-    
-    /* On ajoute un fond noir pour boucher les vides sur les côtés */
-    background-color: #000; 
-    
-    border-radius: 8px;
-    display: block;
-}      
-//.game-card img { 
-//    width: 100%; 
-//    aspect-ratio: 16 / 9; /* Force le format rectangulaire horizontal */
-//    object-fit: cover;    /* Remplit le cadre sans déformer l'image */
- //   border-radius: 8px;
-//    margin-bottom: 12px;
-//    background: #252525;  /* Couleur de fond en attendant le chargement */
-//    display: block;
-//}
-
 .game-card {
     background: #1e1e1e;
-    padding: 12px;
+    padding: 0;          /* On enlève le rembourrage pour que l'image touche les bords */
     border-radius: 12px;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;    /* Pour que les coins de l'image soient arrondis comme la carte */
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.game-card img {
+    width: 100%;
+    height: auto;        /* L'image prend sa hauteur naturelle sans être écrasée */
+    display: block;
+    object-fit: contain; /* Garantit que l'image est vue entièrement */
 }
 
 .game-card:hover {
     transform: scale(1.05);
-    background: #2a2a2a;
-    box-shadow: 0 0 20px rgba(16, 124, 16, 0.4); /* Glow vert Xbox */
+    box-shadow: 0 0 15px rgba(16, 124, 16, 0.6);
 }
 
         /* ZONE DU LECTEUR (IFRAME) */
