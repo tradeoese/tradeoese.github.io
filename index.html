@@ -21,10 +21,11 @@
 
         /* Grille des jeux */
 .game-grid { 
-    /* On élargit un peu les colonnes pour le format 16/9 */
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
-    gap: 25px;
-}
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); 
+            gap: 20px; 
+            margin-bottom: 40px; 
+        }
 
 .game-card img { 
     width: 100%; 
