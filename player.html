@@ -17,7 +17,8 @@
     <script>
         // On récupère les infos envoyées dans l'adresse (URL)
         const params = new URLSearchParams(window.location.search);
-        
+
+window.EJS_startOnLoaded = false; // Le jeu attendra que tu cliques sur "Start" pour lancer le son et l'image
         window.EJS_player = '#game';
         window.EJS_core = params.get('core');
         window.EJS_gameUrl = params.get('rom');
