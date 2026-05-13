@@ -31,13 +31,15 @@
     width: 100%; 
     aspect-ratio: 16 / 9; 
     
-    /* C'est ce qui manque dans ton code actuel : */
-    object-fit: cover;    /* Pour zoomer légèrement au lieu d'écraser */
-    object-position: top; /* Garde le titre du jeu visible si l'image est coupée */
+    /* L'image garde ses proportions et s'affiche entièrement */
+    object-fit: contain; 
+    
+    /* On ajoute un fond noir pour boucher les vides sur les côtés */
+    background-color: #000; 
     
     border-radius: 8px;
     display: block;
-}        
+}      
 //.game-card img { 
 //    width: 100%; 
 //    aspect-ratio: 16 / 9; /* Force le format rectangulaire horizontal */
