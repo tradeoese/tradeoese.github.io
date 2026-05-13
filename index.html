@@ -130,28 +130,40 @@
 
 <!-- SCRIPT DU MOTEUR -->
 <script>
-    function lancer(fichierUrl, typeConsole) {
-        // 1. Nettoyer le lecteur précédent
-        document.getElementById('emulator-container').innerHTML = '';
+function lancer(fichierUrl, typeConsole) {
+    // 1. On vide le conteneur du jeu
+    const container = document.getElementById('emulator-container');
+    container.innerHTML = '';
 
-        // 2. Paramètres de base
-        EJS_player = '#emulator-container';
-        EJS_core = typeConsole;
-        EJS_gameUrl = fichierUrl; 
+    // 2. Supprimer l'ancienne instance de l'émulateur si elle existe
+    // Cela évite que le moteur reste bloqué sur le jeu précédent
+    window.EJS_player = null; 
 
-        // 3. Gestion spécifique du BIOS (PSX)
-        if (typeConsole === 'pcsx_rearmed') {
-            EJS_biosUrl = 'roms/scph5501.bin'; 
-        }
+    // 3. Paramètres de base
+    EJS_player = '#emulator-container';
+    EJS_core = typeConsole;
+    EJS_gameUrl = fichierUrl; 
 
-        // 4. Charger l'émulateur dynamiquement
-        let loader = document.createElement('script');
-        loader.src = "https://www.emulatorjs.com/loader.js";
-        document.body.appendChild(loader);
-        
-        // Scroll automatique vers le jeu
-        document.getElementById('game-display').scrollIntoView({ behavior: 'smooth' });
+    // 4. Gestion du BIOS (PSX)
+    if (typeConsole === 'pcsx_rearmed') {
+        EJS_biosUrl = 'roms/scph5501.bin'; 
     }
+
+    // 5. Supprimer l'ancien script du moteur pour pouvoir le recharger proprement
+    const oldScript = document.getElementById('ejs-loader');
+    if (oldScript) {
+        oldScript.remove();
+    }
+
+    // 6. Charger le moteur avec un ID pour pouvoir le supprimer au prochain changement
+    let loader = document.createElement('script');
+    loader.id = 'ejs-loader';
+    loader.src = "https://www.emulatorjs.com/loader.js";
+    document.body.appendChild(loader);
+    
+    // Scroll automatique
+    document.getElementById('game-display').scrollIntoView({ behavior: 'smooth' });
+}
 </script>
 
 </body>
