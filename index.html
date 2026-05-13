@@ -5,165 +5,119 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon Cloud Gaming Multi-Consoles</title>
     <style>
-        /* Design style "Dark Mode / Xbox" */
+        /* Design style "Xbox Dark Mode" */
         body { 
             background: #121212; 
             color: white; 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            font-family: 'Segoe UI', sans-serif; 
             margin: 0; padding: 20px; 
             text-align: center; 
         }
 
-        h1 { color: #107C10; margin-bottom: 30px; }
-        h2 { border-bottom: 2px solid #333; padding-bottom: 10px; margin-top: 30px; }
+        h1 { color: #107C10; margin-bottom: 30px; text-shadow: 0 0 10px rgba(16, 124, 16, 0.5); }
+        h2 { border-bottom: 2px solid #333; padding-bottom: 10px; margin-top: 30px; color: #ccc; }
 
-        .container { max-width: 900px; margin: auto; }
+        .container { max-width: 1000px; margin: auto; }
 
         /* Grille des jeux */
         .game-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); 
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); 
             gap: 20px; 
             margin-bottom: 40px; 
         }
 
         .game-card { 
             background: #1e1e1e; 
-            padding: 10px; 
-            border-radius: 10px; 
+            padding: 15px; 
+            border-radius: 12px; 
             cursor: pointer; 
             transition: all 0.3s ease;
             border: 2px solid transparent;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
 
         .game-card:hover { 
-            transform: scale(1.05); 
+            transform: translateY(-5px); 
             border-color: #107C10; 
             background: #252525;
         }
 
-        .game-card img { 
-            width: 100%; 
-            border-radius: 5px; 
-            margin-bottom: 10px; 
-        }
+        .game-card p { margin: 10px 0 0 0; font-weight: bold; font-size: 0.9em; }
 
-        /* Lecteur de jeu */
+        /* ZONE DU LECTEUR (IFRAME) */
         #game-display { 
             width: 100%; 
-            max-width: 800px; 
+            max-width: 850px; 
             height: 600px; 
-            margin: 20px auto; 
+            margin: 40px auto; 
             background: #000; 
             border: 4px solid #107C10; 
-            border-radius: 10px;
-            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(16, 124, 16, 0.3);
         }
 
-        #emulator-container { width: 100%; height: 100%; }
+        #game-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
 
-        .info { font-size: 0.9em; color: #888; margin-top: 10px; }
+        .info { font-size: 0.85em; color: #666; margin-top: 20px; font-style: italic; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>🎮 RETRO CLOUD HUB</h1>
+    <h1>🎮 CLOUD RETRO STATION</h1>
 
     <!-- SECTION NINTENDO -->
     <h2>Super Nintendo</h2>
     <div class="game-grid">
-        <div class="game-card" onclick="lancer('roms/Super_Mario_World.sfc', 'snes')">
-            <p>Super Mario World</p>
-        </div>
-        <div class="game-card" onclick="lancer('roms/Super_Bomberman.sfc', 'snes')">
-            <p>Super Bomberman</p>
-        </div>
-        <div class="game-card" onclick="lancer('roms/Final_Fight_3.sfc', 'snes')">
-            <p>Final Fight 3</p>
-        </div>
-        <div class="game-card" onclick="lancer('roms/Donkey_Kong_Country.smc', 'snes')">
-            <p>Donkey Kong Country</p>
-        </div>
-        <div class="game-card" onclick="lancer('roms/Final_Fight.sfc', 'snes')">
-            <p>Final Fight</p>
-        </div>
-        <div class="game-card" onclick="lancer('roms/F-ZERO.smc', 'snes')">
-            <p>F-ZERO</p>
-        </div>
-        <div class="game-card" onclick="lancer('roms/Yoshis_Cookie.sfc', 'snes')">
-            <p>Yoshis Cookie</p>
-        </div>
-        <div class="game-card" onclick="lancer('roms/Flashback.sfc', 'snes')">
-            <p>Flashback</p>
-        </div>
-        <div class="game-card" onclick="lancer('roms/The_Legend_of_Zelda.smc', 'snes')">
-            <p>The Legend of Zelda</p>
-        </div>
+        <div class="game-card" onclick="lancer('roms/Super_Mario_World.sfc', 'snes')"><p>Super Mario World</p></div>
+        <div class="game-card" onclick="lancer('roms/Super_Bomberman.sfc', 'snes')"><p>Super Bomberman</p></div>
+        <div class="game-card" onclick="lancer('roms/Final_Fight_3.sfc', 'snes')"><p>Final Fight 3</p></div>
+        <div class="game-card" onclick="lancer('roms/Donkey_Kong_Country.smc', 'snes')"><p>Donkey Kong</p></div>
+        <div class="game-card" onclick="lancer('roms/F-ZERO.smc', 'snes')"><p>F-ZERO</p></div>
+        <div class="game-card" onclick="lancer('roms/The_Legend_of_Zelda.smc', 'snes')"><p>Zelda: ALTTP</p></div>
     </div>
 
     <!-- SECTION SEGA -->
     <h2>Mega Drive</h2>
     <div class="game-grid">
-        <div class="game-card" onclick="lancer('roms/sonic.gen', 'segaMD')">
-            <p>Sonic The Hedgehog</p>
-        </div>
+        <div class="game-card" onclick="lancer('roms/sonic.gen', 'segaMD')"><p>Sonic Hedgehog</p></div>
     </div>
 
     <!-- SECTION PLAYSTATION -->
     <h2>PlayStation 1</h2>
     <div class="game-grid">
-        <div class="game-card" onclick="lancer('roms/crash.chd', 'pcsx_rearmed')">
-            <p>Crash Bandicoot</p>
-        </div>
+        <div class="game-card" onclick="lancer('roms/crash.chd', 'pcsx_rearmed')"><p>Crash Bandicoot</p></div>
     </div>
 
-    <hr>
-
-    <!-- ZONE DU LECTEUR -->
+    <!-- ZONE DE JEU -->
     <div id="game-display">
-        <div id="emulator-container"></div>
+        <!-- L'iframe démarre vide, elle se chargera au clic -->
+        <iframe id="game-frame" src="about:blank"></iframe>
     </div>
 
-    <p class="info">Astuce : Connectez une manette USB/Bluetooth pour jouer !</p>
+    <p class="info">Appuyez sur un jeu pour lancer la session de Cloud Gaming.</p>
 </div>
 
-<!-- SCRIPT DU MOTEUR -->
 <script>
-function lancer(fichierUrl, typeConsole) {
-    // 1. On vide le conteneur du jeu
-    const container = document.getElementById('emulator-container');
-    container.innerHTML = '';
-
-    // 2. Supprimer l'ancienne instance de l'émulateur si elle existe
-    // Cela évite que le moteur reste bloqué sur le jeu précédent
-    window.EJS_player = null; 
-
-    // 3. Paramètres de base
-    EJS_player = '#emulator-container';
-    EJS_core = typeConsole;
-    EJS_gameUrl = fichierUrl; 
-
-    // 4. Gestion du BIOS (PSX)
-    if (typeConsole === 'pcsx_rearmed') {
-        EJS_biosUrl = 'roms/scph5501.bin'; 
+    function lancer(fichierUrl, typeConsole) {
+        const frame = document.getElementById('game-frame');
+        
+        // On construit l'URL avec les paramètres du jeu
+        // Cela va charger player.html en lui disant quelle ROM ouvrir
+        const playerUrl = `player.html?rom=${encodeURIComponent(fichierUrl)}&core=${typeConsole}`;
+        
+        // On met à jour l'iframe (ce qui réinitialise proprement l'émulateur)
+        frame.src = playerUrl;
+        
+        // Scroll fluide vers le lecteur
+        document.getElementById('game-display').scrollIntoView({ behavior: 'smooth' });
     }
-
-    // 5. Supprimer l'ancien script du moteur pour pouvoir le recharger proprement
-    const oldScript = document.getElementById('ejs-loader');
-    if (oldScript) {
-        oldScript.remove();
-    }
-
-    // 6. Charger le moteur avec un ID pour pouvoir le supprimer au prochain changement
-    let loader = document.createElement('script');
-    loader.id = 'ejs-loader';
-    loader.src = "https://www.emulatorjs.com/loader.js";
-    document.body.appendChild(loader);
-    
-    // Scroll automatique
-    document.getElementById('game-display').scrollIntoView({ behavior: 'smooth' });
-}
 </script>
 
 </body>
