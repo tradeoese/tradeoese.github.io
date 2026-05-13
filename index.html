@@ -27,23 +27,29 @@
             margin-bottom: 40px; 
         }
 
-        .game-card { 
-            background: #1e1e1e; 
-            padding: 15px; 
-            border-radius: 12px; 
-            cursor: pointer; 
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-        }
+.game-card img { 
+    width: 100%; 
+    height: 200px; /* Hauteur fixe pour que toutes les cartes soient alignées */
+    object-fit: cover; /* Recadre l'image proprement sans l'écraser */
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background: #000; /* Fond noir si l'image met du temps à charger */
+}
 
-        .game-card:hover { 
-            transform: translateY(-5px); 
-            border-color: #107C10; 
-            background: #252525;
-        }
+.game-card { 
+    background: #1e1e1e; 
+    padding: 10px; 
+    border-radius: 12px; 
+    cursor: pointer; 
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
 
-        .game-card p { margin: 10px 0 0 0; font-weight: bold; font-size: 0.9em; }
+.game-card:hover { 
+    transform: scale(1.08); 
+    border-color: #107C10; /* Vert Xbox */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+}
 
         /* ZONE DU LECTEUR (IFRAME) */
         #game-display { 
