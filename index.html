@@ -101,7 +101,9 @@
     <!-- ZONE DE JEU -->
     <div id="game-display">
         <!-- L'iframe démarre vide, elle se chargera au clic -->
-        <iframe id="game-frame" src="about:blank"></iframe>
+<!-- On ajoute l'attribut "allow" pour le son -->
+<iframe id="game-frame" src="about:blank" allow="autoplay; gamepad"></iframe>
+    
     </div>
 
     <p class="info">Appuyez sur un jeu pour lancer la session de Cloud Gaming.</p>
