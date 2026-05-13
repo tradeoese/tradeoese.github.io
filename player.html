@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: black; overflow: hidden; }</style>
+</head>
+<body>
+    <div id="game"></div>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        let core = params.get('core');
+        
+        // Si c'est de la Master System, on utilise le moteur le plus compatible
+        if (core === 'sms' || core === 'genesis_plus_gx') {
+            core = 'genesis_plus_gx';
+        }
+
+        window.EJS_player = '#game';
+        window.EJS_core = core;
+        window.EJS_gameUrl = params.get('rom');
+        window.EJS_startOnLoaded = true;
+        
+        // On force le chemin des moteurs pour éviter le "Network Error"
+        window.EJS_pathtodata = 'https://cdn.jsdelivr.net/gh/EmulatorJS/EmulatorJS@latest/data/';
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/EmulatorJS/EmulatorJS@latest/data/loader.js"></script>
+</body>
+</html>
