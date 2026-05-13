@@ -28,19 +28,23 @@
         }
 
 .game-card {
-    background: #1e1e1e;
-    padding: 0;          /* On enlève le rembourrage pour que l'image touche les bords */
+    background: transparent; /* On enlève le fond gris/noir inutile */
+    padding: 0;
     border-radius: 12px;
-    overflow: hidden;    /* Pour que les coins de l'image soient arrondis comme la carte */
-    transition: transform 0.3s ease;
+    overflow: hidden;
     cursor: pointer;
+    transition: transform 0.2s ease;
+    
+    /* Supprime toute hauteur fixe si tu en avais mis une */
+    height: auto !important; 
 }
 
 .game-card img {
     width: 100%;
-    height: auto;        /* L'image prend sa hauteur naturelle sans être écrasée */
+    height: auto;       /* L'image définit la hauteur de la carte */
     display: block;
-    object-fit: contain; /* Garantit que l'image est vue entièrement */
+    object-fit: contain; 
+    border-radius: 12px; /* L'arrondi se fait directement sur l'image */
 }
 
 .game-card:hover {
