@@ -1,0 +1,10 @@
+
+/roms/Super_Mario_World.sfc
+/roms/Super_Bomberman.sfc
+/roms/Final_Fight_3.sfc
+/roms/Donkey_Kong_Country.smc
+/roms/Final_Fight.sfc
+/roms/F-ZERO.smc
+/roms/Yoshis_Cookie.sfc
+/roms/Flashback.sfc
+/roms/The_Legend_of_Zelda.smc
