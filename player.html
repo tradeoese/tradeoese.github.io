@@ -1,30 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <style>body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: black; overflow: hidden; }</style>
+    <meta charset="UTF-8">
+    <style>body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: black; }</style>
 </head>
 <body>
     <div id="game"></div>
     <script>
         const params = new URLSearchParams(window.location.search);
-        
-        // Configuration de l'émulateur
         window.EJS_player = '#game';
         window.EJS_core = params.get('core');
         window.EJS_gameUrl = params.get('rom');
-        window.EJS_startOnLoaded = true; // Auto-start pour éviter les clics inutiles
-        
-        // Gestion du BIOS pour la PS1
-        if (window.EJS_core === 'pcsx_rearmed') {
-            window.EJS_biosUrl = 'roms/scph5501.bin';
-        }
-
-        // IMPORTANT : Si le core est Master System, on s'assure qu'il utilise le bon nom
-        if (window.EJS_core === 'sms') {
-            window.EJS_core = 'genesis_plus_gx'; 
-        }
+        window.EJS_startOnLoaded = true;
     </script>
-    <!-- Utilisation du CDN plus permissif -->
     <script src="https://cdn.jsdelivr.net/gh/EmulatorJS/EmulatorJS@latest/data/loader.js"></script>
 </body>
 </html>
