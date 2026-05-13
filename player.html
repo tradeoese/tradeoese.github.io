@@ -2,17 +2,28 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <style>body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: black; }</style>
+    <style>
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: black; overflow: hidden; }
+        #game { width: 100%; height: 100vh; }
+    </style>
 </head>
 <body>
     <div id="game"></div>
     <script>
         const params = new URLSearchParams(window.location.search);
+        
+        // Configuration
         window.EJS_player = '#game';
         window.EJS_core = params.get('core');
-        window.EJS_gameUrl = params.get('roms');
-        window.EJS_startOnLoaded = true;
+        window.EJS_gameUrl = params.get('rom');
+        window.EJS_startOnLoaded = false; // On laisse le bouton "Start" pour tester
+
+        // Correction pour Master System
+        if (window.EJS_core === 'sms') {
+            window.EJS_core = 'genesis_plus_gx';
+        }
     </script>
-    <script src="https://cdn.jsdelivr.net/gh/EmulatorJS/EmulatorJS@latest/data/loader.js"></script>
+    <!-- On revient au loader classique qui est parfois plus compatible -->
+    <script src="https://www.emulatorjs.com/loader.js"></script>
 </body>
 </html>
