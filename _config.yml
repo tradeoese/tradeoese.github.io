@@ -1,3 +1,3 @@
 include: [roms]
-include: [".sms", ".sfc", ".bin"]
+include: [".sms", ".sfc", ".bin", ".md"]
 exclude: [node_modules]
