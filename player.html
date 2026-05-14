@@ -12,6 +12,13 @@
         window.EJS_core = params.get('core');
         window.EJS_gameUrl = params.get('rom');
         window.EJS_startOnLoaded = true;
+
+
+        // AJOUTE CETTE LIGNE :
+        // Elle pointe vers le dossier bios (ajuste le chemin si nécessaire)
+        window.EJS_biosUrl = 'bios/scph5501.bin';
+
+
         
         // On change de source pour les moteurs (on utilise un miroir alternatif)
         window.EJS_pathtodata = "https://raw.githack.com/EmulatorJS/EmulatorJS/main/data/";
