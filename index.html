@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RetroCloud</title>
+
+  <style>
+    body {
+      background: #0a0a0a;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+      font-size: 28px;
+      letter-spacing: 1px;
+    }
+
+    h2 {
+      margin-top: 40px;
+      margin-bottom: 20px;
+      font-size: 22px;
+      color: #38bdf8;
+      border-bottom: 1px solid #333;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+      justify-items: center;
+      margin-bottom: 40px;
+    }
+
+    .game-card {
+      background: #111;
+      border-radius: 12px;
+      padding: 10px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+    }
+
+    .game-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(56,189,248,0.4);
+    }
+
+    /* Format Vertical (Mega Drive / Master System) */
+    .game-card img {
+      width: 240px;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      background-color: #000;
+      border-radius: 8px;
+      border: 2px solid #222;
+    }
+
+    /* Format Horizontal (SNES) */
+    .game-card.snes img {
+      aspect-ratio: 4 / 3;
+    }
+
+    #emulator-container {
+      width: 100%;
+      max-width: 900px;
+      height: 600px;
+      background: #000;
+      margin: 50px auto;
+      border-radius: 12px;
+      border: 2px solid #333;
+      box-shadow: 0 0 40px rgba(0,0,0,0.8);
+      overflow: hidden;
+      display: none; /* Caché par défaut, s'affiche au clic */
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>RetroCloud – Sélection des jeux</h1>
+
+  <!-- SECTION MEGA DRIVE -->
+  <h2>Mega Drive</h2>
+  <div class="games-grid">
+    <div class="game-card" onclick="lancer('roms/megadrive/Sonic_The_Hedgehog.md', 'genesis_plus_gx')">
+      <img src="covers/megadrive/Sonic_The_Hedgehog.png" alt="Sonic">
+    </div>
+    <div class="game-card" onclick="lancer('roms/megadrive/Aladdin.gen', 'genesis_plus_gx')">
+      <img src="covers/megadrive/Aladdin.png" alt="Aladdin">
+    </div>
+
+    <div class="game-card" onclick="lancer('roms/megadrive/Sonic_The_Hedgehog_3.md', 'genesis_plus_gx')">
+      <img src="covers/megadrive/Sonic_The_Hedgehog_3.png">
+    </div>
+
+    <div class="game-card" onclick="lancer('roms/megadrive/Streets_of_Rage_3.md', 'genesis_plus_gx')">
+      <img src="covers/megadrive/Streets_of_Rage_3.png">
+    </div>
+
+    <div class="game-card" onclick="lancer('roms/megadrive/Super_Fantasy_Zone.md', 'genesis_plus_gx')">
+      <img src="covers/megadrive/Super_Fantasy_Zone.png">
+    </div>
+
+    <div class="game-card" onclick="lancer('roms/megadrive/Theme_Park.md', 'genesis_plus_gx')">
+      <img src="covers/megadrive/Theme_Park.png">
+    </div>
+   <div class="game-card" onclick="lancer('roms/megadrive/Altered_Beast.md', 'genesis_plus_gx')">
+      <img src="covers/megadrive/Altered_Beast.png">
+    </div>
+
+    <div class="game-card" onclick="lancer('roms/megadrive/Castle_of_Illusion_Starring_Mickey_Mouse.md', 'genesis_plus_gx')">
+      <img src="covers/megadrive/Castle_of_Illusion_Starring_Mickey_Mouse.png">
+    </div>
+
+    <div class="game-card" onclick="lancer('roms/megadrive/Mickey_Mania_-_The_Timeless_Adventures_of_Mickey_Mouse.md', 'genesis_plus_gx')">
+      <img src="covers/megadrive/Mickey_Mania_-_The_Timeless_Adventures_of_Mickey_Mouse.png">
+    </div>
+
+    <div class="game-card" onclick="lancer('roms/megadrive/Revenge_of_Shinobi.md', 'genesis_plus_gx')">
+      <img src="covers/megadrive/Revenge_of_Shinobi.png">
+    </div>
+
+    <div class="game-card" onclick="lancer('roms/megadrive/Shadow_of_the_Beast.md', 'genesis_plus_gx')">
+      <img src="covers/megadrive/Shadow_of_the_Beast.png">
+    </div>
+
+    <div class="game-card" onclick="lancer('roms/megadrive/Shinobi_III_-_Return_of_the_Ninja_Master.md', 'genesis_plus_gx')">
+      <img src="covers/megadrive/Shinobi_III_-_Return_of_the_Ninja_Master.png">
+    </div>
+
+
+
+    <!-- Ajoute tes autres jeux Mega Drive ici -->
+  </div>
+
+  <!-- SECTION MASTER SYSTEM -->
+  <h2>Master System</h2>
+  <div class="games-grid">
+    <!-- On utilise le .zip ou le .sms avec le core genesis_plus_gx -->
+    <div class="game-card" onclick="lancer('roms/mastersystem/Penguin_Land.sms', 'genesis_plus_gx')">
+      <img src="covers/mastersystem/Penguin_Land.png" alt="Penguin Land">
+    </div>
+    <div class="game-card" onclick="lancer('roms/mastersystem/Penguin_Land.zip', 'genesis_plus_gx')">
+      <img src="covers/mastersystem/Penguin_Land.png">
+    </div>
+  </div>
+
+  <!-- SECTION SUPER NINTENDO -->
+  <h2>Super Nintendo</h2>
+  <div class="games-grid">
+    <div class="game-card snes" onclick="lancer('roms/snes/Super_Mario_World.sfc', 'snes9x')">
+      <img src="covers/snes/Super_Mario_World.png" alt="Mario World">
+    </div>
+    <div class="game-card snes" onclick="lancer('roms/snes/Donkey_Kong_Country.smc', 'snes9x')">
+      <img src="covers/snes/Donkey_Kong_Country.png" alt="DKC">
+    </div>
+    <div class="game-card snes" onclick="lancer('roms/snes/F-ZERO.smc', 'snes9x')">
+      <img src="covers/snes/F-ZERO.png">
+    </div>
+
+    <div class="game-card snes" onclick="lancer('roms/snes/The_Legend_of_Zelda.smc', 'snes9x')">
+      <img src="covers/snes/The_Legend_of_Zelda.png">
+    </div>
+
+    <div class="game-card snes" onclick="lancer('roms/snes/Final_Fight_3.sfc', 'snes9x')">
+      <img src="covers/snes/Final_Fight_3.png">
+    </div>
+
+    <div class="game-card snes" onclick="lancer('roms/snes/Final_Fight.sfc', 'snes9x')">
+      <img src="covers/snes/Final_Fight.png">
+    </div>
+
+    <div class="game-card snes" onclick="lancer('roms/snes/Flashback.sfc', 'snes9x')">
+      <img src="covers/snes/Flashback.png">
+    </div>
+
+    <div class="game-card snes" onclick="lancer('roms/snes/Super_Bomberman.sfc', 'snes9x')">
+      <img src="covers/snes/Super_Bomberman.png">
+    </div>
+
+    <div class="game-card snes" onclick="lancer('roms/snes/Yoshis_Cookie.sfc', 'snes9x')">
+      <img src="covers/snes/Yoshis_Cookie.png">
+    </div>
+  </div>
+
+  <!-- ZONE DE L'ÉMULATEUR -->
+  <div id="emulator-container"></div>
+
+  <script>
+    function lancer(romPath, coreName) {
+      const container = document.getElementById("emulator-container");
+      
+      // On affiche le container
+      container.style.display = "block";
+
+      // On construit l'URL pour player.html
+      // encodeURIComponent est crucial pour Safari/Brave
+      const playerUrl = `player.html?rom=${encodeURIComponent(romPath)}&core=${coreName}`;
+
+      // On injecte l'iframe
+      container.innerHTML = `<iframe src="${playerUrl}" allowfullscreen></iframe>`;
+
+      // Petit effet : on scrolle vers l'émulateur
+      container.scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+
+</body>
+</html>
