@@ -8,15 +8,14 @@
     <div id="game"></div>
     <script>
         const params = new URLSearchParams(window.location.search);
-        
         window.EJS_player = '#game';
         window.EJS_core = params.get('core');
         window.EJS_gameUrl = params.get('rom');
         window.EJS_startOnLoaded = true;
         
-        // On utilise le CDN officiel pour éviter les erreurs réseau
-        window.EJS_pathtodata = "https://cdn.jsdelivr.net/gh/EmulatorJS/EmulatorJS@latest/data/";
+        // On change de source pour les moteurs (on utilise un miroir alternatif)
+        window.EJS_pathtodata = "https://raw.githack.com/EmulatorJS/EmulatorJS/main/data/";
     </script>
-    <script src="https://cdn.jsdelivr.net/gh/EmulatorJS/EmulatorJS@latest/data/loader.js"></script>
-</body><a>hbbuybubuo</a>
+    <script src="https://raw.githack.com/EmulatorJS/EmulatorJS/main/data/loader.js"></script>
+</body>higuygougyougyug
 </html>
