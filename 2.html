@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Télécharger Covers SEGA</title>
+<style>
+    body { font-family: Arial; padding: 20px; background: #111; color: #eee; }
+    button { padding: 12px 20px; font-size: 18px; cursor: pointer; }
+    pre { background: #222; padding: 10px; border-radius: 6px; }
+</style>
+</head>
+<body>
+
+<h2>Téléchargement automatique des jaquettes SEGA</h2>
+
+<p>Clique sur le bouton pour télécharger toutes les jaquettes Mega Drive + Master System.</p>
+
+<button onclick="start()">Télécharger les jaquettes</button>
+
+<pre id="log"></pre>
+
+<script>
+// === LISTE EXACTE DES JEUX ===
+
+const megadrive = [
+"Bonanza Bros",
+"Columns",
+"Streets of Rage",
+"Super Street Fighter II",
+"Street Racer",
+"Streets of Rage 2",
+"Streets of Rage 3",
+"Street Fighter II - Special Champion Edition"
+];
+
+const mastersystem = [
+"Golden Axe",
+"Asterix",
+"Choplifter",
+"Alex Kidd - The Lost Stars",
+"Double Dragon",
+"Zool - Ninja of the Nth Dimension",
+"R-Type",
+"Shanghai",
+"Rastan",
+"Kung Fu Kid",
+"Alex Kidd in Shinobi World",
+"Lemmings",
+"Wonder Boy",
+"The Ninja",
+"Fantasy Zone",
+"Xenon 2 - Megablast",
+"Fantasy Zone II - The Tears of Opa-Opa",
+"Asterix and the Great Rescue",
+"Alex Kidd in Miracle World",
+"Wonder Boy III - The Dragons Trap",
+"Alex Kidd - High-Tech World",
+"Taito Chase H.Q",
+"Double Hawk",
+"Bubble Bobble",
+"Asterix and the Secret Mission",
+"Chuck Rock",
+"Wonder Boy in Monster World"
+];
+
+// === API ===
+const API_SEARCH = "https://api.thegamesdb.net/v1/Games/ByGameName";
+const API_IMAGE = "https://cdn.thegamesdb.net/images/original/";
+
+function log(msg) {
+    document.getElementById("log").textContent += msg + "\n";
+}
+
+async function searchGame(name) {
+    const url = `${API_SEARCH}?name=${encodeURIComponent(name)}`;
+    const res = await fetch(url);
+    return res.json();
+}
+
+async function downloadImage(url, filename) {
+    const blob = await fetch(url).then(r => r.blob());
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    a.click();
+}
+
+async function processList(list, folder) {
+    for (const gameName of list) {
+        log("Recherche : " + gameName);
+
+        const data = await searchGame(gameName);
+        if (!data.data || !data.data.games) {
+            log("❌ Introuvable : " + gameName);
+            continue;
+        }
+
+        const game = data.data.games[0];
+        if (!game.boxart || !game.boxart.front) {
+            log("❌ Pas de jaquette : " + gameName);
+            continue;
+        }
+
+        const coverUrl = API_IMAGE + game.boxart.front;
+        const filename = folder + " - " + gameName + ".jpg";
+
+        log("Téléchargement : " + filename);
+        await downloadImage(coverUrl, filename);
+    }
+}
+
+async function start() {
+    log("=== Mega Drive ===");
+    await processList(megadrive, "MD");
+
+    log("\n=== Master System ===");
+    await processList(mastersystem, "MS");
+
+    log("\n✔ Terminé !");
+}
+</script>
+
+</body>
+</html>
