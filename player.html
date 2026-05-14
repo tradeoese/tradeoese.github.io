@@ -12,13 +12,12 @@
     <script>
         const params = new URLSearchParams(window.location.search);
         
-        // Configuration forcée
         window.EJS_player = '#game';
         window.EJS_core = params.get('core');
         window.EJS_gameUrl = params.get('rom');
         window.EJS_startOnLoaded = true;
 
-        // LA LIGNE MAGIQUE POUR FIXER LE NETWORK ERROR
+        // Ce chemin est vital pour que Brave et Safari chargent les moteurs
         window.EJS_pathtodata = "https://cdn.jsdelivr.net/gh/EmulatorJS/EmulatorJS@latest/data/";
     </script>
     <script src="https://cdn.jsdelivr.net/gh/EmulatorJS/EmulatorJS@latest/data/loader.js"></script>
