@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: black; overflow: hidden; }
+        #game { width: 100%; height: 100vh; }
+    </style>
+</head>
+<body>
+    <div id="game"></div>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        
+        // Configuration forcée
+        window.EJS_player = '#game';
+        window.EJS_core = params.get('core');
+        window.EJS_gameUrl = params.get('rom');
+        window.EJS_startOnLoaded = true;
+
+        // LA LIGNE MAGIQUE POUR FIXER LE NETWORK ERROR
+        window.EJS_pathtodata = "https://cdn.jsdelivr.net/gh/EmulatorJS/EmulatorJS@latest/data/";
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/EmulatorJS/EmulatorJS@latest/data/loader.js"></script>
+</body>
+</html>
